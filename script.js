@@ -1,27 +1,18 @@
-/*let pessoa = {
-  nome: "matheus",
-  idade: 26,
-  altura: 1.85,
-  cargo: "programador",
-};
+let listElement = document.querySelector("#app ul");
+let inputElement = document.querySelector("#app input");
+let buttonElement = document.querySelector("#app button");
 
-console.log(pessoa);
-let carro = {
-  nome: "bmw 530",
-  cor: "azul",
-  potencia: "220cv",
-};
-console.log(carro);*/
+let tarefas = [];
 
-/*let usuarios = [
-  { nome: "matheus", cargo: "programador", status: "ativo" },
-  { nome: "maria", cargo: "programadora", status: "ativo" },
-  { nome: "jose", cargo: "RH", status: "ativo" },
-];
-console.log(usuarios);*/
+function adicionarTarefas(event) {
+  if (inputElement.value === "") {
+    alert("digite alguma coisa");
+    return false;
+  } else {
+    let novaTarefa = inputElement.value;
 
-//template strings
-let nome = "matheus";
-
-let mensagem = `Meu nome e ${nome}`;
-console.log(mensagem);
+    tarefas.push(novaTarefa);
+    inputElement.value = "";
+  }
+}
+buttonElement.onclick = adicionarTarefas;
