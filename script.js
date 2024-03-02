@@ -6,11 +6,23 @@ let tarefas = [];
 
 function renderTarefas() {
   listElement.innerHTML = "";
+
   tarefas.map((todo) => {
     let liElement = document.createElement("li");
-    let tarefasText = document.createTextNode(todo);
+    let tarefaText = document.createTextNode(todo);
 
-    liElement.appendChild(tarefasText);
+    let linkElement = document.createElement("a");
+    linkElement.setAttribute("href", "#");
+
+    let linkText = document.createTextNode("Excluir");
+    linkElement.appendChild(linkText);
+
+    let posicao = tarefas.indexOf(todo);
+
+    linkElement.setAttribute("onclick", `deletarTarefa(${posicao})`);
+
+    liElement.appendChild(tarefaText);
+    listElement.appendChild(linkElement);
     listElement.appendChild(liElement);
   });
 }
@@ -28,3 +40,8 @@ function adicionarTarefas(event) {
   }
 }
 buttonElement.onclick = adicionarTarefas;
+
+function deletarTarefa(posicao) {
+  tarefas.splice(posicao, 1);
+  renderTarefas();
+}
